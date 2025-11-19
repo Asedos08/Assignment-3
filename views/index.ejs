@@ -1,11 +1,74 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
+
+  <% include partials/header.ejs %>
+  
+  <!-- Tasks Content -->
+  <body class="d-flex flex-column min-vh-100">
+  <main class="flex-fill">  
+    <div class="container mt-5">
+    <table class="table table-bordered">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Task</th>
+          <th scope="col">Description</th>
+          <th scope="col">Due Date</th>
+          <th scope="col">Action</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        <tr>
+          <td class="font-weight-bold">Test</td>
+          <td>Test</td>
+          <td>
+            <span class="badge badge-warning">Test</span>
+          </td>
+          <td>
+            <button class="btn btn-sm btn-outline-primary mr-1">
+              <i class="fas fa-edit">Edit</i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger">
+              <i class="fas fa-trash">Delete</i>
+            </button>
+            </td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Test</td>
+            <td>Test</td>
+            <td>
+              <span class="badge badge-success">Test</span>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-outline-primary mr-1">
+                <i class="fas fa-edit">Edit</i>
+              </button>
+              <button class="btn btn-sm btn-outline-danger">
+                <i class="fas fa-trash">Delete</i>
+              </button>
+            </td>
+        </tr>
+        <tr>
+            <td class="font-weight-bold">Test</td>
+            <td>Test</td>
+            <td>
+              <span class="badge badge-info">Test</span>
+            </td>
+            <td>
+            <button class="btn btn-sm btn-outline-primary mr-1">
+              <i class="fas fa-edit">Edit</i>
+            </button>
+            <button class="btn btn-sm btn-outline-danger">
+              <i class="fas fa-trash">Delete</i>
+            </button>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </main>
+
+  
+  <% include partials/footer.ejs %>
+
   </body>
 </html>

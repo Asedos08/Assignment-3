@@ -1,8 +1,18 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+.navbar-brand {
+  font-weight: bold;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-a {
-  color: #00B7FF;
+.table th {
+  border-top: none;
+  font-weight: 600;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
 }
