@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+
+  <%- include('../partials/header.ejs') %>
+
+<body class="d-flex flex-column min-vh-100">
+<main class="flex-fill">
+
+    <div class="container py-5">
+        
+        <!-- Page Title -->
+        <div class="text-center mb-4">
+            <h2 class="font-weight-bold">
+                <i class="fas fa-edit mr-2"></i>Edit Task
+            </h2>
+        </div>
+
+        <!-- Card -->
+        <div class="mx-auto shadow-sm rounded p-4" style="max-width: 900px; background: #ffffff;">
+            
+            <!-- Fixed error check -->
+            <% if (typeof error !== 'undefined' && error) { %>
+                <div class="alert alert-danger">
+                    <%= error %>
+                </div>
+            <% } %>
+
+            <form action="/tasks/<%= task._id %>/update" method="POST">
+                
+                <!-- Title -->
+                <label for="title" class="font-weight-bold">Task Title *</label>
+                <input 
+                    type="text"
+                    id="title"
+                    name="title"
+                    class="form-control mb-3"
+                    value="<%= task.title %>"
+                    maxlength="100"
+                    required
+                >
+                <small class="text-muted d-block mb-3">Maximum 100 characters</small>
+
+                <!-- Description -->
+                <label for="description" class="font-weight-bold">Description *</label>
+                <textarea
+                    id="description"
+                    name="description"
+                    rows="4"
+                    class="form-control mb-3"
+                    maxlength="100"
+                    required
+                ><%= task.description %></textarea>
+                <small class="text-muted d-block mb-3">Maximum 100 characters</small>
+
+                <!-- Due Date -->
+                <label for="dueDate" class="font-weight-bold">Due Date *</label>
+                <input 
+                    type="date"
+                    id="dueDate"
+                    name="dueDate"
+                    class="form-control mb-4"
+                    value="<%= new Date(task.dueDate).toISOString().split('T')[0] %>"
+                    required
+                >
+                
+                <!-- Action Buttons -->
+                <div class="d-flex">
+                    <button type="submit" class="btn btn-primary btn-lg mr-2">
+                        <i class="fas fa-save mr-1"></i>Update
+                    </button>
+
+                    <a href="/" class="btn btn-secondary btn-lg">
+                        <i class="fas fa-times mr-1"></i>Cancel
+                    </a>
+                </div>
+
+            </form>
+        </div>
+
+    </div>
+
+</main>
+
+<%- include('../partials/footer.ejs') %>
+</body>
+</html>

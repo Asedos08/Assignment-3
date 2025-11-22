@@ -1,74 +1,57 @@
 <!DOCTYPE html>
 <html>
+  <%- include('partials/header') %>
 
-  <% include partials/header.ejs %>
-  
-  <!-- Tasks Content -->
   <body class="d-flex flex-column min-vh-100">
-  <main class="flex-fill">  
-    <div class="container mt-5">
-    <table class="table table-bordered">
-      <thead class="thead-dark">
-        <tr>
-          <th scope="col">Task</th>
-          <th scope="col">Description</th>
-          <th scope="col">Due Date</th>
-          <th scope="col">Action</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-        <tr>
-          <td class="font-weight-bold">Test</td>
-          <td>Test</td>
-          <td>
-            <span class="badge badge-warning">Test</span>
-          </td>
-          <td>
-            <button class="btn btn-sm btn-outline-primary mr-1">
-              <i class="fas fa-edit">Edit</i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="fas fa-trash">Delete</i>
-            </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Test</td>
-            <td>Test</td>
-            <td>
-              <span class="badge badge-success">Test</span>
-            </td>
-            <td>
-              <button class="btn btn-sm btn-outline-primary mr-1">
-                <i class="fas fa-edit">Edit</i>
-              </button>
-              <button class="btn btn-sm btn-outline-danger">
-                <i class="fas fa-trash">Delete</i>
-              </button>
-            </td>
-        </tr>
-        <tr>
-            <td class="font-weight-bold">Test</td>
-            <td>Test</td>
-            <td>
-              <span class="badge badge-info">Test</span>
-            </td>
-            <td>
-            <button class="btn btn-sm btn-outline-primary mr-1">
-              <i class="fas fa-edit">Edit</i>
-            </button>
-            <button class="btn btn-sm btn-outline-danger">
-              <i class="fas fa-trash">Delete</i>
-            </button>
-        </tr>
-      </tbody>
-    </table>
-    </div>
-  </main>
+    <main class="flex-fill">
+      <div class="container mt-5">
+        <table class="table table-bordered">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Task</th>
+              <th scope="col">Description</th>
+              <th scope="col">Due Date</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
 
-  
-  <% include partials/footer.ejs %>
+          <tbody>
+            <% if (typeof tasks !== 'undefined' && tasks.length > 0) { %>
+              <% for (let i = 0; i < tasks.length; i++) { %>
+                <tr>
+                  <td class="font-weight-bold"><%= tasks[i].title %></td>
+                  <td><%= tasks[i].description %></td>
+                  <td>
+                    <span class="badge badge-warning">
+                      <%= new Date(tasks[i].dueDate).toLocaleDateString() %>
+                    </span>
+                  </td>
+                  <td>
+                    <a href="/tasks/<%= tasks[i]._id %>/edit" class="btn btn-sm btn-outline-primary mr-1">
+                      <i class="fas fa-edit"></i> Edit
+                    </a>
+                    <form action="/tasks/<%= tasks[i]._id %>/delete" method="POST" style="display: inline;">
+                      <button type="submit" class="btn btn-sm btn-outline-danger" onclick="return confirm('Are you sure you want to delete this task?')">
+                        <i class="fas fa-trash"></i> Delete
+                      </button>
+                    </form>
+                  </td>
+                </tr>
+              <% } %>
+            <% } else { %>
+              <tr>
+                <td colspan="4" class="text-center text-muted py-4">
+                  <i class="fas fa-clipboard-list fa-2x mb-3"></i>
+                  <br>
+                  No tasks yet. <a href="/tasks/new">Create your first task!</a>
+                </td>
+              </tr>
+            <% } %>
+          </tbody>
+        </table>
+      </div>
+    </main>
 
+    <%- include('partials/footer') %>
   </body>
 </html>
