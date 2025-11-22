@@ -76,7 +76,7 @@ router.get('/:id/edit', async (req, res) => {
     }
 });
 
-/*PUT /tasks/:id/update - Update task*/
+/*POST /tasks/:id/update - Update task*/
 router.post('/:id/update', async (req, res) => {
     try {
         const { title, description, dueDate } = req.body;

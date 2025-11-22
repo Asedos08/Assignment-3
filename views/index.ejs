@@ -2,6 +2,8 @@
 <html>
   <%- include('partials/header') %>
 
+  <!--- Table contaning the information -->
+
   <body class="d-flex flex-column min-vh-100">
     <main class="flex-fill">
       <div class="container mt-5">
@@ -15,6 +17,7 @@
             </tr>
           </thead>
 
+          <!-- Displays the task from the database-->
           <tbody>
             <% if (typeof tasks !== 'undefined' && tasks.length > 0) { %>
               <% for (let i = 0; i < tasks.length; i++) { %>
@@ -40,6 +43,7 @@
               <% } %>
             <% } else { %>
               <tr>
+                <!-- If there is no task on the database it will only show the text below -->
                 <td colspan="4" class="text-center text-muted py-4">
                   <i class="fas fa-clipboard-list fa-2x mb-3"></i>
                   <br>

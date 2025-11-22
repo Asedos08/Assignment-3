@@ -20,9 +20,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-/**
- * Test route to check database connection
- */
+/* Test route to check database connection */
 router.get('/test-db', async (req, res) => {
   try {
     // Test connection by counting tasks
@@ -32,7 +30,7 @@ router.get('/test-db', async (req, res) => {
     const testTask = new Task({
       title: 'Test Task - Database Connection',
       description: 'This is a test task to verify database connection',
-      dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000) // 7 days from now
+      dueDate: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000)
     });
     
     await testTask.save();
